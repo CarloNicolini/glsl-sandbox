@@ -6,22 +6,10 @@ set(PROJECT_BINARY_DIR "${CMAKE_CURRENT_SOURCE_DIR}/build/")
 set(LIBRARY_OUTPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/build/" CACHE PATH "Single directory for all libraries")
 set(EXECUTABLE_OUTPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/build/" CACHE PATH "Single directory for all executables")
 
-####################### USER OPTIONS  ##################################
-if (WIN32)
-option(EYEGAZE_SUPPORT "Include and link EyeGaze libraries (only for Windows)" ON)
-endif(WIN32)
-if (WIN32 AND EYEGAZE_SUPPORT)
-find_package(Eyegaze)
-endif (WIN32 AND EYEGAZE_SUPPORT)
-
-option(QT_SUPPORT "Compile and link the Qt related examples and libraries")
-
 ####################### FIND PACKAGES AND LIBRARIES ####################
 find_package(StandardMathLibrary)
-find_package(FFTW)
 
 set(BOOST_LIBS thread date_time system program_options filesystem regex serialization iostreams)
-
 set(Boost_USE_STATIC_LIBS        ON)
 set(Boost_USE_MULTITHREADED      ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
@@ -32,16 +20,6 @@ find_package(Boost COMPONENTS ${BOOST_LIBS} REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
 find_package(Threads REQUIRED)
 ####################### END BOOST LIBRARIES INCLUDE AND LINKING ################
-
-if(WIN32)
-set( COMPILE_OPTOTRAK TRUE)
-set(OPTOTRAK_LIBRARIES ${CMAKE_SOURCE_DIR}/deps/drivers/NDIoapi/Win32/ndlib/msvc/oapi.lib)
-include_directories(${CMAKE_SOURCE_DIR}/deps/drivers/NDIoapi/Win32/ndlib/include)
-else(WIN32)
-set( COMPILE_OPTOTRAK FALSE)
-#set(OPTOTRAK_LIBRARIES ${CMAKE_SOURCE_DIR}/deps/drivers/NDIoapi/Win32/ndlib/msvc/oapi.lib)
-include_directories(${CMAKE_SOURCE_DIR}/deps/drivers/NDIoapi/Linux/ndlib/include/)
-endif(WIN32)
 
 
 ##########  CROSS-PLATFORM OPENGL + GLUT ########################
@@ -122,19 +100,6 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
 endif(MSVC)
 ####################### END IF MICROSOFT COMPILER #############################
 
-# Activates OpenMP on architectures which support it
-#include(FindOpenMP)
-#if(OPENMP_FOUND)
-#	message(STATUS "Adding OpenMP flags to MSVC: ${OpenMP_CXX_FLAGS} and ${OpenMP_EXE_LINKER_FLAGS}")
-#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-#    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
-#endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${PROJECT_BINARY_DIR} )
-
 add_subdirectory(src)
-
-set(COMPILE_EXPERIMENTS TRUE)
-if ( COMPILE_EXPERIMENTS )
-add_subdirectory( experiments )
-endif ( COMPILE_EXPERIMENTS )
