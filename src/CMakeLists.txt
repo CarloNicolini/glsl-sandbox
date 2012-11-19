@@ -14,14 +14,11 @@ Imageloader.h
 add_library(GLSL ${GLSL_SRCS} ${GLSL_HDRS} )
 
 add_executable(testGLSL		testGLSL.cpp)
-add_executable(testGLSLcubemapSkyBox testGLSLcubemapSkyBox.cpp)
 
 if(UNIX)
 target_link_libraries(testGLSL	GLSL pthread ${Boost_LIBRARIES} ${GL_LIBS} ${GLEW_LIBRARY} )
-target_link_libraries(testGLSLcubemapSkyBox GLSL pthread ${Boost_LIBRARIES} ${GL_LIBS} ${GLEW_LIBRARY} )
 endif(UNIX)
 
 if(WIN32)
 target_link_libraries(testGLSL	GLViz GLSL ${Boost_LIBRARIES} ${GL_LIBS} ${GLEW_LIBRARY})
-target_link_libraries(testGLSLcubemapSkyBox GLViz GLSL ${Boost_LIBRARIES} ${GL_LIBS} ${GLEW_LIBRARY})
 endif(WIN32)
