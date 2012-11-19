@@ -21,7 +21,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License and a copy of the GNU General Public License along with
 //  glsl-sandbox. If not, see <http://www.gnu.org/licenses/>.
- */
+
 /* File for "Putting It All Together" lesson of the OpenGL tutorial on
  * www.videotutorialsrock.com
  */
