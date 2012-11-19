@@ -1,6 +1,6 @@
 // This file is part of glsl-sandbox
 
-// Copyright (C) 2011 Carlo Nicolini <carlo.nicolini@iit.it>
+// Copyright (C) 2012 Carlo Nicolini <carlo.nicolini@iit.it>
 //
 //
 // glsl-sandbox is free software; you can redistribute it and/or
