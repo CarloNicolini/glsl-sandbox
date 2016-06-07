@@ -65,8 +65,6 @@ glsl::glShader *shader;
 GLuint _textureId;
 GLuint cubeMapTexturesId[6];
 
-int dimension=0;
-
 //Makes the image into a texture, and returns the id of the texture
 GLuint loadTexture(Image* image)
 {
@@ -208,7 +206,6 @@ int main(int argc, char* argv[])
 {
     string shaderfile(argv[1]);
     imageNameFile = string(argv[2]);
-    dimension = atoi(argv[3]);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(width, height);
